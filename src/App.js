@@ -1,58 +1,65 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react'; // <-- Add useEffect here
+import axios from 'axios';
+import UserInfo from './components/UserInfo';
+import ContactInfo from './components/ContactInfo';
+import EducationalInfo from './components/EducationalInfo';
+import ExperienceInfo from './components/ExperienceInfo';
+import SkillInfo from './components/SkillInfo';
+import InterestsInfo from './components/InterestsInfo';
+import GuildInfo from './components/GuildInfo';
+import './App.css';
 
-function App() {
-  const [portfolio, setPortfolio] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    website: '',
-    description: ''
+const App = () => {
+  const [formData, setFormData] = useState({
+    education: [],
+    experience: [],
+    skills: [],
+    interests: [],
+    guilds: [],
   });
 
-  const handleChange = (e) => {
-    setPortfolio({ ...portfolio, [e.target.name]: e.target.value });
+  const [allData, setAllData] = useState([]);
+
+  const handleSubmit = async () => {
+    try {
+      await axios.post('http://localhost:5000/api/save', formData);
+      alert('Data saved successfully!');
+      fetchData(); // Fetch data again after saving
+    } catch (error) {
+      console.error('Error saving data', error);
+      alert('Failed to save data');
+    }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const response = await fetch('http://localhost:5000/api/portfolio', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(portfolio)
-    });
-    const data = await response.json();
-    console.log(data);
+  const fetchData = async () => {
+    try {
+      const response = await axios.get('http://localhost:5000/api/data');
+      setAllData(response.data);
+    } catch (error) {
+      console.error('Error fetching data', error);
+    }
   };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <div className="App">
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Name:</label>
-          <input type="text" name="name" value={portfolio.name} onChange={handleChange} />
-        </div>
-        <div>
-          <label>Email:</label>
-          <input type="email" name="email" value={portfolio.email} onChange={handleChange} />
-        </div>
-        <div>
-          <label>Phone:</label>
-          <input type="text" name="phone" value={portfolio.phone} onChange={handleChange} />
-        </div>
-        <div>
-          <label>Website:</label>
-          <input type="text" name="website" value={portfolio.website} onChange={handleChange} />
-        </div>
-        <div>
-          <label>Description:</label>
-          <textarea name="description" value={portfolio.description} onChange={handleChange}></textarea>
-        </div>
-        <button type="submit">Submit</button>
-      </form>
+      <h1>Portfolio Form</h1>
+      <UserInfo formData={formData} setFormData={setFormData} />
+      <ContactInfo formData={formData} setFormData={setFormData} />
+      <EducationalInfo formData={formData} setFormData={setFormData} />
+      <ExperienceInfo formData={formData} setFormData={setFormData} />
+      <SkillInfo formData={formData} setFormData={setFormData} />
+      <InterestsInfo formData={formData} setFormData={setFormData} />
+      <GuildInfo formData={formData} setFormData={setFormData} />
+      <button onClick={handleSubmit}>Save</button>
+
+      {/* <h2>All Data</h2>
+      <pre>{JSON.stringify(allData, null, 2)}</pre> */}
     </div>
   );
-}
+};
 
 export default App;

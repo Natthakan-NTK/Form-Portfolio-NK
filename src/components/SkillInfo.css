@@ -1,0 +1,62 @@
+.skill-info {
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  .skill-entry {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .skill-name {
+    flex: 1;
+  }
+  
+  .skill-score {
+    width: 30px;
+    text-align: right;
+    margin-right: 10px;
+  }
+  
+  .skill-bar {
+    flex: 3;
+    background-color: #eee;
+    border-radius: 5px;
+    overflow: hidden;
+    height: 10px;
+  }
+  
+  .skill-bar-filled {
+    height: 100%;
+    background-color: #007bff;
+  }
+  
+  .add-skill-form {
+    display: flex;
+    align-items: center;
+  }
+  
+  .add-skill-form input {
+    margin-right: 69px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .add-skill-form input[type="number"] {
+    width: 93px;
+  }
+  
+  .add-skill-btn {
+    background-color: #ffcdd2;
+    color: #1c0909;
+    border: none;
+    padding: 4px 28px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  

@@ -1,0 +1,102 @@
+.user-info {
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  .cover-photo {
+    background-color: #ffcdd2;
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+    border-radius: 8px 8px 0 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 6.25rem;
+  }
+  
+  .cover-photo-input {
+    display: none;
+  }
+  
+  .edit-cover-photo-btn {
+    background-color: #cbbec2;
+    color: #1c0909;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute;
+    top: 95px;
+    right: 8px;
+  }
+  
+  .profile-pic-container {
+    position: relative;
+  }
+  
+  .profile-pic {
+    width: 104.8px; /* Set the width to 104.8px */
+    height: 108.8px; /* Set the height to 108.8px */
+    /* width: 100px;
+    height: 100px; */
+    border-radius: 50%;
+    border: 3px solid #fff; /* White border around the profile picture */
+    background-color: #ccc;
+    object-fit: cover;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); /* Subtle shadow for the profile picture */
+  }
+  
+  .profile-pic-input {
+    display: none;
+  }
+  
+  .edit-photo-btn {
+    position: absolute;
+    bottom: -14px;
+    right: -3px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+  
+  .camera-icon {
+    font-size: 12px;
+    color: #000;
+    background: white;
+    border-radius: 50%;
+    padding: 5px;
+  }
+  
+  .form-fields {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .input-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .input-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .input-group input, .input-group select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  .input-group select {
+    width: calc(101% - 8px);
+    display: inline-block;
+  }
+  
