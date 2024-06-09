@@ -1,9 +1,12 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 const cors = require('cors');
 
+// Initialize the app
 const app = express();
+app.use(bodyParser.json());
+app.use(cors());
 
 // Connect to MongoDB
 mongoose.connect('mongodb://localhost:27017/portfolio', {
@@ -11,35 +14,73 @@ mongoose.connect('mongodb://localhost:27017/portfolio', {
   useUnifiedTopology: true,
 });
 
-// Define Portfolio Schema
-const portfolioSchema = new mongoose.Schema({
-  name: String,
-  email: String,
-  phone: String,
-  website: String,
-  description: String,
+// Define a schema and model for form data
+const formSchema = new mongoose.Schema({
+  username: String,
+  nickname: String,
+  firstName: String,
+  lastName: String,
+  position: String,
+  nationality: String,
+  telephone: String,
+  startingDate: Date,
+  address: String,
+  subDistrict: String,
+  district: String,
+  province: String,
+  postalCode: String,
+  facebook: String,
+  lineId: String,
+  instagram: String,
+  education: [
+    {
+      year: String,
+      university: String,
+    },
+  ],
+  experience: [
+    {
+      title: String,
+      duration: String,
+    },
+  ],
+  skills: [
+    {
+      skill: String,
+      score: Number,
+    },
+  ],
+  interests: [String],
+  guilds: [String],
 });
 
-// Define Portfolio Model
-const Portfolio = mongoose.model('Portfolio', portfolioSchema);
+const Form = mongoose.model('Form', formSchema);
 
-app.use(cors());
-app.use(bodyParser.json());
+// Define API routes
 
-// Create a new portfolio
-app.post('/api/portfolio', async (req, res) => {
-  const portfolio = new Portfolio(req.body);
-  await portfolio.save();
-  res.send({ message: 'Portfolio created' });
+// Save form data
+app.post('/api/save', async (req, res) => {
+  try {
+    const formData = new Form(req.body);
+    await formData.save();
+    res.status(200).send('Data saved successfully!');
+  } catch (error) {
+    res.status(500).send('Error saving data: ' + error);
+  }
 });
 
-// Get all portfolios
-app.get('/api/portfolios', async (req, res) => {
-  const portfolios = await Portfolio.find();
-  res.send(portfolios);
+// Get all form data
+app.get('/api/data', async (req, res) => {
+  try {
+    const data = await Form.find();
+    res.json(data);
+  } catch (error) {
+    res.status(500).send('Error retrieving data: ' + error);
+  }
 });
 
+// Start the server
 const port = 5000;
 app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+  console.log(`Server is running on http://localhost:${port}`);
 });

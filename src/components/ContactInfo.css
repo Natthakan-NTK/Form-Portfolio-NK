@@ -1,0 +1,68 @@
+.contact-info {
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  .contact-info h2 {
+    margin-bottom: 20px;
+    font-size: 1.2em;
+  }
+  
+  .input-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .input-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .input-group input,
+  .input-group select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    width: 100%;
+  }
+  
+  .input-group input[name="address"] {
+    width: 100%;
+  }
+  
+  .input-group input[name="facebook"],
+  .input-group input[name="lineId"],
+  .input-group input[name="instagram"] {
+    width: calc(33.33% - 10px);
+    display: inline-block;
+  }
+  
+  .input-group input[name="lineId"] {
+    margin-right: 0;
+  }
+  
+  .input-group select {
+    width: calc(101% - 8px);
+    display: inline-block;
+  }
+  
+  @media (max-width: 768px) {
+    .input-group input,
+    .input-group select {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  
+    .input-group input[name="facebook"],
+    .input-group input[name="lineId"],
+    .input-group input[name="instagram"] {
+      width: 100%;
+      float: none;
+      margin-right: 0;
+    }
+  }
